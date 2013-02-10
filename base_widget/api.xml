@@ -1,0 +1,602 @@
+<?xml version="1.0"?>
+<api>
+	<description>
+		<![CDATA[This is an API to interact with all the database items for the mobile application]]>
+	</description>
+	
+	<command id='helpConnectUserTask' security='public'>
+		<description><![CDATA[This is the command block to interact with the user items]]></description>
+		<index>
+			<description><![CDATA[This is how you can get a listing of all user items]]></description>
+			<action file='helpConnectCrudData.php'><![CDATA[readAllUsers();]]></action>
+		</index>
+		<get>
+			<description><![CDATA[This is how you can get a specific user item]]></description>
+			<action file='helpConnectCrudData.php'><![CDATA[readUser($_REST['helpConnectUserTask']);]]></action>
+		</get>
+		<post>
+			<description><![CDATA[This is how you can create an user item]]></description>
+			<action file='helpConnectCrudData.php'><![CDATA[createUser($_POST['userID'], $_POST['firstName'], $_POST['lastName'], $_POST['email'], $_POST['phone'], $_POST['latitude'], $_POST['longitude']);]]></action>
+			
+			<param id='userID'>
+                    <description><![CDATA["Unique identifier of user"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["0"]]></exampleValue>
+            </param>
+			<param id='firstName'>
+                    <description><![CDATA["First name of the user"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["Perron"]]></exampleValue>
+            </param>
+            <param id='lastName'>
+                    <description><![CDATA["First name of the user"]]></description>
+                    <defaultValue><![CDATA[" "]]></defaultValue>
+                    <exampleValue><![CDATA["Jones"]]></exampleValue>
+            </param>
+            <param id='email'>
+                    <description><![CDATA["Email of the user"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["email@fakeDomain.com"]]></exampleValue>
+            </param>
+            <param id='phone'>
+                    <description><![CDATA["Phone number of the user"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["555-555-5555"]]></exampleValue>
+            </param>
+            <param id='latitude'>
+                    <description><![CDATA["Latitude coordinate of the user"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["0.0"]]></exampleValue>
+            </param>
+            <param id='longitude'>
+                    <description><![CDATA["Longitude coordinate of the user"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["0.0"]]></exampleValue>
+            </param>
+		</post>
+		<put>
+			<description><![CDATA[This is how you can update an user item]]></description>
+			<action file='helpConnectCrudData.php'><![CDATA[updateUser($_REST['helpConnectUserTask'], $_POST['firstName'], $_POST['lastName'], $_POST['email'], $_POST['phone'], $_POST['latitude'], $_POST['longitude']);]]></action>
+			
+			<param id='firstName'>
+                    <description><![CDATA["First name of the user"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["Perron"]]></exampleValue>
+            </param>
+            <param id='lastName'>
+                    <description><![CDATA["First name of the user"]]></description>
+                    <defaultValue><![CDATA[" "]]></defaultValue>
+                    <exampleValue><![CDATA["Jones"]]></exampleValue>
+            </param>
+            <param id='email'>
+                    <description><![CDATA["Email of the user"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["email@fakeDomain.com"]]></exampleValue>
+            </param>
+            <param id='phone'>
+                    <description><![CDATA["Phone number of the user"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["555-555-5555"]]></exampleValue>
+            </param>
+            <param id='latitude'>
+                    <description><![CDATA["Latitude coordinate of the user"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["0.0"]]></exampleValue>
+            </param>
+            <param id='longitude'>
+                    <description><![CDATA["Longitude coordinate of the user"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["0.0"]]></exampleValue>
+            </param>
+            
+		</put>
+		<delete>
+			<description><![CDATA[This is how you can delete an user item]]></description>
+			<action file='helpConnectCrudData.php'><![CDATA[deleteUser($_REST['helpConnectUserTask']);]]></action>
+            
+		</delete>
+	</command>
+	
+	<command id='helpConnectServiceTask' security='public'>
+		<description><![CDATA[This is the command block to interact with the user items]]></description>
+		<index>
+			<description><![CDATA[This is how you can get a listing of all user items]]></description>
+			<action file='helpConnectCrudData.php'><![CDATA[readAllServices($_POST['readAllType'], $_POST['searchItem']);]]></action>
+		</index>
+		<get>
+			<description><![CDATA[This is how you can get a specific user item]]></description>
+			<action file='helpConnectCrudData.php'><![CDATA[readAllServices($_REST['helpConnectServiceTask']);]]></action>
+		</get>
+		<post>
+			<description><![CDATA[This is how you can create an user item]]></description>
+			<action file='helpConnectCrudData.php'><![CDATA[createService($_POST['userID'], $_POST['description'], $_POST['cost']);]]></action>
+			
+			<param id='userID'>
+                    <description><![CDATA["Unique identifier of user offering the service"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["0"]]></exampleValue>
+            </param>
+			<param id='description'>
+                    <description><![CDATA["Description of service"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["Perron"]]></exampleValue>
+            </param>
+            <param id='cost'>
+                    <description><![CDATA["Cost of the service"]]></description>
+                    <defaultValue><![CDATA[" "]]></defaultValue>
+                    <exampleValue><![CDATA["Jones"]]></exampleValue>
+            </param>
+		</post>
+		<put>
+			<description><![CDATA[This is how you can update an user item]]></description>
+			<action file='helpConnectCrudData.php'><![CDATA[updateService($_REST['helpConnectServiceTask'], $_POST['description'], $_POST['cost']);]]></action>
+			
+			<param id='description'>
+                    <description><![CDATA["Description of service"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["Perron"]]></exampleValue>
+            </param>
+            <param id='cost'>
+                    <description><![CDATA["Cost of the service"]]></description>
+                    <defaultValue><![CDATA[" "]]></defaultValue>
+                    <exampleValue><![CDATA["Jones"]]></exampleValue>
+            </param>
+            
+		</put>
+		<delete>
+			<description><![CDATA[This is how you can delete an user item]]></description>
+			<action file='helpConnectCrudData.php'><![CDATA[deleteService($_REST['helpConnectServiceTask']);]]></action>
+            
+		</delete>
+	</command>
+	
+	<command id='helpConnectServiceStatusTask' security='public'>
+		<description><![CDATA[This is the command block to interact with the user items]]></description>
+		<index>
+			<description><![CDATA[This is how you can get a listing of all service status items]]></description>
+			<action file='helpConnectCrudData.php'><![CDATA[readAllServiceStatuses();]]></action>
+		</index>
+		<get>
+			<description><![CDATA[This is how you can get a specific service status item]]></description>
+			<action file='helpConnectCrudData.php'><![CDATA[readServiceStatus($_REST['helpConnectServiceStatusTask']);]]></action>
+		</get>
+		<post>
+			<description><![CDATA[This is how you can create a service status item]]></description>
+			<action file='helpConnectCrudData.php'><![CDATA[createServiceStatus($_POST['serviceID'], $_POST['serviceOwnerID'], $_POST['RequesterUserID']);]]></action>
+			
+			<param id='serviceID'>
+                    <description><![CDATA["Unique identifier of the service"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["0"]]></exampleValue>
+            </param>
+			<param id='serviceOwnerID'>
+                    <description><![CDATA["Unique identifier of the person offering the service"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["0"]]></exampleValue>
+            </param>
+            <param id='RequesterUserID'>
+                    <description><![CDATA["Unique identifier of the person requesting the service"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["0"]]></exampleValue>
+            </param>
+		</post>
+		<put>
+			<description><![CDATA[This is how you can update a service status]]></description>
+			<action file='helpConnectCrudData.php'><![CDATA[updateServiceStatus($_REST['helpConnectServiceStatusTask'], $_POST['isConnected'], $_POST['isPaid']);]]></action>
+			
+			<param id='isConnected'>
+                    <description><![CDATA["Boolean whether the users are connected or not"]]></description>
+                    <defaultValue><![CDATA["0"]]></defaultValue>
+                    <exampleValue><![CDATA["0"]]></exampleValue>
+            </param>
+            <param id='lastName'>
+                    <description><![CDATA["boolean whether the service is paid for or not"]]></description>
+                    <defaultValue><![CDATA["0"]]></defaultValue>
+                    <exampleValue><![CDATA["0"]]></exampleValue>
+            </param>            
+		</put>
+		<delete>
+			<description><![CDATA[This is how you can delete a service status]]></description>
+			<action file='helpConnectCrudData.php'><![CDATA[deleteServiceStatus($_REST['helpConnectServiceStatusTask']);]]></action>
+            
+		</delete>
+	</command>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	<command id='authenticateTask' security='public'>
+		<description><![CDATA[This is the command block to retrieve the secure username]]></description>
+		<index>
+			<description><![CDATA[This is how you can retrive the username]]></description>
+			<action file='crudData.php'><![CDATA[readCurrentUsername();]]></action>
+		</index>
+	</command>
+
+	<command id='emailTask' security='public'>
+		<description><![CDATA[This is the command block to interact with the email inbox]]></description>
+		<index>
+			<description><![CDATA[This is how you can get a listing of all emails]]></description>
+			<action file='crudData.php'><![CDATA[readAllEmails();]]></action>
+		</index>
+		<get>
+			<description><![CDATA[This is how you can get emails from a specific sender]]></description>
+			<action file='crudData.php'><![CDATA[readEmailsFrom($_GET['senderEmail']);]]></action>
+		</get>
+	</command>
+	
+	<command id='eventTask' security='public'>
+		<description><![CDATA[This is the command block to interact with the event items]]></description>
+		<index>
+			<description><![CDATA[This is how you can get a listing of all event items]]></description>
+			<action file='crudData.php'><![CDATA[readAllEvents();]]></action>
+		</index>
+		<get>
+			<description><![CDATA[This is how you can get a specific event item]]></description>
+			<action file='crudData.php'><![CDATA[readEvent($_REST['eventTask']);]]></action>
+		</get>
+		<post>
+			<description><![CDATA[This is how you can create an event item]]></description>
+			<action file='crudData.php'><![CDATA[createEvent($_POST['groupID'], $_POST['title'], $_POST['description'], $_POST['startTime'], $_POST['endTime'], $_POST['locationName'], $_POST['locationID'], $_POST['eventTypeID'], $_POST['lastModified']);]]></action>
+			
+			<param id='title'>
+                    <description><![CDATA["Title of the event"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["Perron's Birthday"]]></exampleValue>
+            </param>
+			<param id='description'>
+                    <description><![CDATA["Description of the event"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["Perron will be turning 22 on his Birthday"]]></exampleValue>
+            </param>
+            <param id='startTime'>
+                    <description><![CDATA["Start time of the event"]]></description>
+                    <defaultValue><![CDATA[" "]]></defaultValue>
+                    <exampleValue><![CDATA["04/01/2013 12:00:00 AM"]]></exampleValue>
+            </param>
+            <param id='endTime'>
+                    <description><![CDATA["End time of the event"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["04/02/2013 12:00:00 AM"]]></exampleValue>
+            </param>
+            <param id='locationID'>
+                    <description><![CDATA["The id of the location that describes the actual location of the event"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["2"]]></exampleValue>
+            </param>
+            <param id='eventTypeID'>
+                    <description><![CDATA["The id of the event type that describes the actual type of event"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["2"]]></exampleValue>
+            </param>
+            <param id='lastModified'>
+                    <description><![CDATA["The date and time when the event was last updated"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["04/01/2013 12:00:00 AM"]]></exampleValue>
+            </param>
+		</post>
+		<put>
+			<description><![CDATA[This is how you can update an event item]]></description>
+			<action file='crudData.php'><![CDATA[updateEvent($_REST['eventTask'], $_POST['title'], $_POST['description'], $_POST['startTime'], $_POST['endTime'], $_POST['locationName'], $_POST['locationID'], $_POST['eventTypeID']);]]></action>
+			
+			
+			<param id='title'>
+                    <description><![CDATA["Title of the event"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["Perron's Birthday"]]></exampleValue>
+            </param>
+			<param id='description'>
+                    <description><![CDATA["Description of the event"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["Perron will be turning 22 on his Birthday"]]></exampleValue>
+            </param>
+            <param id='startTime'>
+                    <description><![CDATA["Start time of the event"]]></description>
+                    <defaultValue><![CDATA[" "]]></defaultValue>
+                    <exampleValue><![CDATA["04/01/2013 12:00:00 AM"]]></exampleValue>
+            </param>
+            <param id='endTime'>
+                    <description><![CDATA["End time of the event"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["04/02/2013 12:00:00 AM"]]></exampleValue>
+            </param>
+            <param id='locationID'>
+                    <description><![CDATA["The id of the location that describes the actual location of the event"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["2"]]></exampleValue>
+            </param>
+            <param id='eventTypeID'>
+                    <description><![CDATA["The id of the event type that describes the actual type of event"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["2"]]></exampleValue>
+            </param>            
+		</put>
+		<delete>
+			<description><![CDATA[This is how you can delete an event item]]></description>
+			<action file='crudData.php'><![CDATA[deleteEvent($_REST['eventTask']);]]></action>
+            
+            <param id='eventID'>
+                    <description><![CDATA["The unique id of the event "]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["2"]]></exampleValue>
+            </param> 
+		</delete>
+	</command>
+	
+	<command id='userTask' security='public'>
+		<description><![CDATA[This is the command block to interact with the user items]]></description>
+		<index>
+			<description><![CDATA[This is how you can get a listing of all user items]]></description>
+			<action file='crudData.php'><![CDATA[readAllUsers();]]></action>
+		</index>
+		<get>
+			<description><![CDATA[This is how you can get a specific user item]]></description>
+			<action file='crudData.php'><![CDATA[readUser($_REST['userTask']);]]></action>
+		</get>
+		<post>
+			<description><![CDATA[This is how you can create an user item]]></description>
+			<action file='crudData.php'><![CDATA[createUser($_POST['GTusername'], $_POST['firstName'], $_POST['lastName'], $_POST['email']);]]></action>
+			
+			<param id='GTusername'>
+                    <description><![CDATA["GT username"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["pjones35"]]></exampleValue>
+            </param>
+			<param id='firstName'>
+                    <description><![CDATA["First name of the user"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["Perron"]]></exampleValue>
+            </param>
+            <param id='lastName'>
+                    <description><![CDATA["First name of the user"]]></description>
+                    <defaultValue><![CDATA[" "]]></defaultValue>
+                    <exampleValue><![CDATA["Jones"]]></exampleValue>
+            </param>
+            <param id='email'>
+                    <description><![CDATA["Email of the user"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["email@fakeDomain.com"]]></exampleValue>
+            </param>
+		</post>
+		<put>
+			<description><![CDATA[This is how you can update an user item]]></description>
+			<action file='crudData.php'><![CDATA[updateUser($_REST['userTask'],$_POST['GTusername'], $_POST['firstName'], $_POST['lastName'], $_POST['email']);]]></action>
+			
+			<param id='GTusername'>
+                    <description><![CDATA["GT username"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["pjones35"]]></exampleValue>
+            </param>
+			<param id='firstName'>
+                    <description><![CDATA["First name of the user"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["Perron"]]></exampleValue>
+            </param>
+            <param id='lastName'>
+                    <description><![CDATA["First name of the user"]]></description>
+                    <defaultValue><![CDATA[" "]]></defaultValue>
+                    <exampleValue><![CDATA["Jones"]]></exampleValue>
+            </param>
+            <param id='email'>
+                    <description><![CDATA["Email of the user"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["email@fakeDomain.com"]]></exampleValue>
+            </param>
+            
+		</put>
+		<delete>
+			<description><![CDATA[This is how you can delete an user item]]></description>
+			<action file='crudData.php'><![CDATA[deleteUser($_REST['userTask']);]]></action>
+            
+		</delete>
+	</command>
+	
+	<command id='userToGroupTask' security='public'>
+		<description><![CDATA[This is the command block to interact with the "user to group" items]]></description>
+		<index>
+			<description><![CDATA[This is how you can get a listing of all "user to group"  items]]></description>
+			<action file='crudData.php'><![CDATA[readAllUserToGroups();]]></action>
+		</index>
+		<get>
+			<description><![CDATA[This is how you can get a specific "user to group"  item]]></description>
+			<action file='crudData.php'><![CDATA[readUserToGroup($_REST['userToGroupTask']);]]></action>
+		</get>
+		<post>
+			<description><![CDATA[This is how you can create an "user to group"  item]]></description>
+			<action file='crudData.php'><![CDATA[createUserToGroup($_POST['userID'], $_POST['groupID'], $_POST['groupAdmin']);]]></action>
+			
+			<param id='userID'>
+                    <description><![CDATA["The unique id of the user"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["1"]]></exampleValue>
+            </param>
+			<param id='groupID'>
+                    <description><![CDATA["The unique id of the group"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["1"]]></exampleValue>
+            </param>
+            <param id='groupAdmin'>
+                    <description><![CDATA["Whether or not if the user is a group admin"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["1"]]></exampleValue>
+            </param>
+		</post>
+		<put>
+			<description><![CDATA[This is how you can update an "user to group"  item]]></description>
+			<action file='crudData.php'><![CDATA[updateUserToGroup($_REST['userToGroupTask'], $_POST['groupAdmin']);]]></action>
+            
+		</put>
+		<delete>
+			<description><![CDATA[This is how you can delete an "user to group" item]]></description>
+			<action file='crudData.php'><![CDATA[deleteUserToGroup($_REST['userToGroupTask']);]]></action>
+            
+		</delete>
+	</command>
+	
+	<command id='groupTask' security='public'>
+		<description><![CDATA[This is the command block to interact with the group items]]></description>
+		<index>
+			<description><![CDATA[This is how you can get a listing of all group items]]></description>
+			<action file='crudData.php'><![CDATA[readAllGroups();]]></action>
+		</index>
+		<get>
+			<description><![CDATA[This is how you can get a specific group item]]></description>
+			<action file='crudData.php'><![CDATA[readGroup($_REST['groupTask']);]]></action>
+		</get>
+		<post>
+			<description><![CDATA[This is how you can create a group item]]></description>
+			<action file='crudData.php'><![CDATA[createGroup($_POST['name'], $_POST['description'], $_POST['email']);]]></action>
+			
+			<param id='name'>
+                    <description><![CDATA["Name of the group"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["Class of 2013"]]></exampleValue>
+            </param>
+            <param id='description'>
+                    <description><![CDATA["Description of the group"]]></description>
+                    <defaultValue><![CDATA[" "]]></defaultValue>
+                    <exampleValue><![CDATA["This group is for graduation students"]]></exampleValue>
+            </param>
+            <param id='email'>
+                    <description><![CDATA["Email of the group"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["email@fakeDomain.com"]]></exampleValue>
+            </param>
+		</post>
+		<put>
+			<description><![CDATA[This is how you can update a group item]]></description>
+			<action file='crudData.php'><![CDATA[updateGroup($_REST['groupTask'],$_POST['name'], $_POST['description'], $_POST['email']);]]></action>
+			
+			<param id='groupID'>
+                    <description><![CDATA["The unique id of the group"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["3"]]></exampleValue>
+            </param>
+			<param id='name'>
+                    <description><![CDATA["Name of the group"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["Class of 2013"]]></exampleValue>
+            </param>
+            <param id='description'>
+                    <description><![CDATA["Description of the group"]]></description>
+                    <defaultValue><![CDATA[" "]]></defaultValue>
+                    <exampleValue><![CDATA["This group is for graduation students"]]></exampleValue>
+            </param>
+            <param id='email'>
+                    <description><![CDATA["Email of the group"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["email@fakeDomain.com"]]></exampleValue>
+            </param>
+            
+		</put>
+		<delete>
+			<description><![CDATA[This is how you can delete a group item]]></description>
+			<action file='crudData.php'><![CDATA[deleteGroup($_REST['groupTask']);]]></action>
+            
+		</delete>
+	</command>
+	
+	<command id='OrganizerRequestTask' security='public'>
+		<description><![CDATA[This is the command block to interact with the "organizer request" items]]></description>
+		<index>
+			<description><![CDATA[This is how you can get a listing of all "organizer request" items]]></description>
+			<action file='crudData.php'><![CDATA[readAllOrganizerRequests();]]></action>
+		</index>
+		<get>
+			<description><![CDATA[This is how you can get a specific "organizer request" item]]></description>
+			<action file='crudData.php'><![CDATA[readOrganizerRequest($_REST['OrganizerRequestTask']);]]></action>
+		</get>
+		<post>
+			<description><![CDATA[This is how you can create an "organizer request" item]]></description>
+			<action file='crudData.php'><![CDATA[createOrganizerRequest($_POST['userID'], $_POST['groupID']);]]></action>
+			
+			<param id='userID'>
+                    <description><![CDATA["The unique id of the user"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["1"]]></exampleValue>
+            </param>
+			<param id='groupID'>
+                    <description><![CDATA["The unique id of the group"]]></description>
+                    <defaultValue><![CDATA[""]]></defaultValue>
+                    <exampleValue><![CDATA["1"]]></exampleValue>
+            </param>
+		</post>
+		<put>
+			<description><![CDATA[This is how you can update an "organizer request" item]]></description>
+			<action file='crudData.php'><![CDATA["Not implemented"]]></action>
+            
+		</put>
+		<delete>
+			<description><![CDATA[This is how you can delete an "organizer request" item]]></description>
+			<action file='crudData.php'><![CDATA[deleteOrganizerRequest($_REST['OrganizerRequestTask']);]]></action>
+            
+		</delete>
+	</command>
+	
+	<command id='EventTypeTask' security='public'>
+		<description><![CDATA[This is the command block to interact with the event type items]]></description>
+		<index>
+			<description><![CDATA[This is how you can get a listing of all event type items]]></description>
+			<action file='crudData.php'><![CDATA[readAllEventTypes();]]></action>
+		</index>
+		<get>
+			<description><![CDATA[This is how you can get a specific event type item]]></description>
+			<action file='crudData.php'><![CDATA["Not implemented"]]></action>
+		</get>
+		<post>
+			<description><![CDATA[This is how you can create an event type item]]></description>
+			<action file='crudData.php'><![CDATA["Not implemented"]]></action>
+		</post>
+		<put>
+			<description><![CDATA[This is how you can update an event type item]]></description>
+			<action file='crudData.php'><![CDATA["Not implemented"]]></action>            
+		</put>
+		<delete>
+			<description><![CDATA[This is how you can delete an event type item]]></description>
+			<action file='crudData.php'><![CDATA["Not implemented"]]></action>            
+		</delete>
+	</command>
+	
+	<command id='LocationTask' security='public'>
+		<description><![CDATA[This is the command block to interact with the location items]]></description>
+		<index>
+			<description><![CDATA[This is how you can get a listing of all location items]]></description>
+			<action file='crudData.php'><![CDATA[readAllLocations();]]></action>
+		</index>
+		<get>
+			<description><![CDATA[This is how you can get a specific location item]]></description>
+			<action file='crudData.php'><![CDATA["Not implemented"]]></action>
+		</get>
+		<post>
+			<description><![CDATA[This is how you can create a location item]]></description>
+			<action file='crudData.php'><![CDATA["Not implemented"]]></action>
+		</post>
+		<put>
+			<description><![CDATA[This is how you can update a location item]]></description>
+			<action file='crudData.php'><![CDATA["Not implemented"]]></action>            
+		</put>
+		<delete>
+			<description><![CDATA[This is how you can delete a location item]]></description>
+			<action file='crudData.php'><![CDATA["Not implemented"]]></action>            
+		</delete>
+	</command>
+	
+</api>

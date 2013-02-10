@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding = "utf-8" ?>
+<widget title="Club Connection" security='protected'>
+    <library name="jquery"/>
+    <library name="gtmob"/>
+    <library name="jquery.tmpl"/> 
+	
+    <html file="clubconnection.html"/>
+    <css file="styles.css"/>
+
+    <library name="jquery.mobile"/>
+    
+    <javascript file="jqm.autoComplete-1.4.3-min.js"/>
+    
+    <javascript file="clubconnection.js"/>
+
+</widget>

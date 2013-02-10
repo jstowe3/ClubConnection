@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title></title>
+		
+		<!--<link rel="stylesheet" href="jquery-ui-1.8.21.custom.css" /> -->
+		<link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
+		<link rel="stylesheet" href="styles.css" />
+		
+		<style>
+			/* App custom styles */
+			.content_div {
+				display: none;
+			}
+			.content_div:first-child {
+				display: block;
+			}
+		</style>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script src="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
+		<script src="jqm.autoComplete-1.4.3-min.js"></script>
+		
+	</head>
+	<body>
+
+		<div data-role="page" id="home" data-theme='e'>
+			<div data-role='header' data-position="fixed">
+				<h1>Club Connection</h1>
+				<a href="#createNewGroup" data-role="button" data-icon="plus" data-rel="dialog" class="ui-btn-right">Add Group</a>
+				<div data-role="navbar">
+					<ul>
+						<li>
+							<a href="#" data-href="groups" class="ui-btn-active">Groups</a>
+						</li>
+						<li>
+							<a href="#" data-href="events" >Events</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div data-role="content" data-theme='e'>
+
+				<div id="groups" class="content_div">
+
+					<div data-role="collapsible-set" data-content-theme="d">
+						<div data-role="collapsible">
+							<h2>Subscribed Groups</h2>
+							<ul id="userGroupList" data-role="listview">
+								<li>
+									No groups currently subscribed
+								</li>
+							</ul>
+						</div>
+
+						<div data-role="collapsible">
+							<h2>All Groups</h2>
+							<ul id="allGroupList" data-role="listview" data-filter="true" >
+								<li>
+									Loading...
+								</li>
+							</ul>
+						</div>
+					</div>
+
+				</div>
+
+				<div id="events" class="content_div">
+					
+					<div data-role="collapsible-set" data-content-theme="d">
+						<div data-role="collapsible">
+							<h2>Subscribed Events</h2>
+							<ul id="userEventList" data-role="listview">
+								<li>
+									No groups currently subscribed
+								</li>
+							</ul>
+						</div>
+
+						<div data-role="collapsible">
+							<h2>All Events</h2>
+							<ul id="allEventList" data-role="listview" data-filter="true" >
+								<li>
+									Loading...
+								</li>
+							</ul>
+						</div>
+					</div>
+					
+				</div>
+
+			</div>
+
+		</div>
+
+		<script id="groupListItem" type="text/x-jquery-tmpl">
+			<li data-messageId="${GroupID}" class="groupItem">
+			<a href="#" onclick="readGroup(${GroupID})">${Name}</a>
+			</li>
+		</script>
+
+		<script id="userGroupListItem" type="text/x-jquery-tmpl">
+			<li data-messageId="${GroupID}" class="groupItem">
+			<a href="#" onclick="readGroup(${GroupID})">${Name}</a>
+			</li>
+		</script>
+		
+		<script id="eventListItem" type="text/x-jquery-tmpl">
+			<li data-messageId="${EventID}" class="groupItem">
+			<a href="#" onclick="readEvent(${EventID})">${Title}</a>
+			</li>
+		</script>
+
+		<script id="userEventListItem" type="text/x-jquery-tmpl">
+			<li data-messageId="${EventID}" class="groupItem">
+			<a href="#" onclick="readEvent(${EventID})">${Title}</a>
+			</li>
+		</script>
+
+		<div data-role="page" id="register_new_user" data-theme='b'>
+			<div data-role='header' data-position='inline' data-theme='b'>
+				<h1>Club Connection</h1>
+				<a href="#home" data-icon='back' data-transition="slide" data-iconpos="notext" class="ui-btn-right"></a>
+			</div>
+			<div id="registration_form" data-role="content" class="ui-content" role="main">
+				<h2>New User Sign-Up</h2>
+				<p>
+					Give us your name and email and you'll be on your way!
+				</p>
+				<div data-role="fieldcontain" class="ui-field-contain ui-body ui-br">
+					<label for="first-name" class="ui-input-text">First Name:</label>
+					<input type="text" name="first_name" id="first-name" class="ui-input-text ui-body-b ui-corner-all ui-shadow-inset">
+					<label for="last-name" class="ui-input-text">Last Name:</label>
+					<input type="text" name="last_name" id="last-name" class="ui-input-text ui-body-b ui-corner-all ui-shadow-inset">
+					<label for="email" class="ui-input-text">Email:</label>
+					<input type="text" name="email" id="email" class="ui-input-text ui-body-b ui-corner-all ui-shadow-inset">
+				</div>
+				<a href="#home" id="register_button" data-role="button" onclick="createUser()" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="b" class="ui-btn ui-shadow ui-btn-corner-all ui-btn-up-b"> <span class="ui-btn-inner ui-btn-corner-all"> <span class="ui-btn-text">Sign Up!</span> </span> </a>
+			</div>
+		</div>
+
+		<div data-role="page" id="createNewGroup" data-theme='e'>
+			<div data-role='header' data-position='fixed'>
+				<h1>Create Group</h1>
+			</div>
+			<div id="create_grpup_form" data-role="content" class="ui-content" role="main">
+				<div data-role="fieldcontain">
+					<label for="group-name-input">Group Name:</label>
+					<input type="text" name="group_name" id="group-name-input"/>
+					<br/>
+					<label for="group-description-input">Group Description:</label>
+					<textarea name="group_description" id="group-description-input"></textarea>
+					<br/>
+					<label for="group-email-input">Group Email:</label>
+					<input type="email" name="email" id="group-email-input"/>
+				</div>
+				<a href="#home" data-role="button" onclick="createGroup()" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="b"> Create! </a>
+			</div>
+		</div>
+
+		<div data-role="page" id="manageGroup" data-theme='e'>
+			<div data-role='header' data-position='fixed'>
+				<h1>Manage Group</h1>
+			</div>
+
+			<div id="edit_group_form" data-role="content" class="ui-content" role="main">
+				<div data-role="fieldcontain">
+					<label for="group-name-input-edit">Group Name:</label>
+					<input type="text" name="group_name" id="group-name-input-edit"/>
+					<br/>
+					<label for="group-description-input-edit">Group Description:</label>
+					<textarea name="group_description" id="group-description-input-edit"></textarea>
+					<br/>
+					<label for="group-email-input-edit">Group Email:</label>
+					<input type="email" name="email" id="group-email-input-edit"/>
+				</div>
+				<a href="#groupDetails" data-role="button" onclick="updateGroup();" data-corners="true" data-shadow="true" data-inline="true" data-iconshadow="true" data-wrapperels="span" data-theme="b"> Update! </a>
+				<a href="#home" data-role="button" onclick="deleteGroup();" data-corners="true" data-shadow="true" data-inline="true" data-iconshadow="true" data-wrapperels="span" data-theme="b"> Delete! </a>
+			</div>
+		</div>
+
+		<div data-role="page" id="groupDetails" data-theme='e'>
+			<div data-role='header' data-position='fixed'>
+				<h1>View Group</h1>
+				<a href="#home" data-icon='back' data-transition="slide" data-iconpos="notext" class="ui-btn-left"></a>
+				<a id="createEventBtn" href="#createNewEvent" onclick="readAllGTplaces();" data-role="button" data-icon="plus" data-rel="dialog" class="ui-btn-right">Add Event</a>
+
+			</div>
+			<div id="groupDetailsContent" data-role="content" class="ui-content" role="main">
+				<label for="group-name">Group Name:</label>
+				<h3 id="group-name"></h3>
+
+				<a id="manageGroupBtn" href="#manageGroup" data-role="button" data-rel="dialog" data-mini="true" data-inline="true" class="ui-btn-right">Manage Group</a>
+
+				<a id="subscribeGroupBtn" onclick="subscribe();" data-role="button" data-mini="true" data-inline="true" class="ui-btn-right">Subscribe</a>
+
+				<a id="unsubscribeGroupBtn" onclick="unsubscribe();" data-role="button" data-mini="true" data-inline="true" class="ui-btn-right">Unsubscribe</a>
+
+				<br />
+
+				<label for="group-description">Group Description:</label>
+				<h3 id="group-description"></h3>
+
+				<label for="group-email">Group Email:</label>
+				<a id="group-email"></a>
+
+				<div data-role="collapsible-set" data-content-theme="d" style="clear:both;">
+					<div data-role="collapsible">
+						<h2>Group Events</h2>
+						<ul id="groupEventsList" data-role="listview" data-filter="true">
+							<li>
+								No events currently scheduled
+							</li>
+						</ul>
+					</div>
+
+					<div data-role="collapsible">
+						<h2>Group Emails</h2>
+						<ul id="groupEmailList" data-role="listview" data-filter="true">
+							<li>
+								Loading...
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<script id="eventListItem" type="text/x-jquery-tmpl">
+				<li data-messageId="${EventID}" class="groupItem">
+					<a href="#eventDetails" data-rel="page" onclick="readEvent(${EventID})">${title}</a>
+				</li>
+				</script>
+
+				<script id="emailGroupListItem" type="text/x-jquery-tmpl">
+					<li data-messageId="${uid}" class="groupItem">
+					<a href="#viewEmail" data-rel="dialog" onclick="viewEmail(${uid})">${date}: ${subject}</a>
+					</li>
+				</script>
+
+			</div>
+		</div>
+
+		<div data-role="page" id="viewEmail" data-theme='e'>
+			<div data-role='header' data-position='fixed'>
+				<h1 id="email_header"></h1>
+			</div>
+			<div id="email_body_box" data-role="content" class="ui-content" role="main">
+				<textarea name="email_message" id="email-message-content"></textarea>
+				<a href="#" data-role="button" data-rel="back" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="b"> Done </a>
+			</div>
+		</div>
+
+		<div data-role="page" id="createNewEvent" data-theme='e'>
+			<div data-role='header' data-position='fixed'>
+				<h1>Create Event</h1>
+			</div>
+			<div id="create_event_form" data-role="content" class="ui-content" role="main">
+				<div data-role="fieldcontain">
+					<label for="event-name-input">Event Name:</label>
+					<input type="text" name="title" id="event-name-input"/>
+					<br/>
+
+					<label for="event-location-input">Location:</label>
+					<input type="text" name="event-location-input" id="event-location-input"/>
+					<ul id="suggestions" data-role="listview" data-inset="true"></ul>
+					
+					<script id="eventLocationOptionItem" type="text/x-jquery-tmpl">
+						<option id="${b_id}" value="${name}" >${name}</option>
+					</script>
+
+					<label for="room-description-input">Room:</label>
+					<input type="text" name="room-description-input" id="room-description-input">
+					</textarea>
+
+					<label for="event-startTime-input">Start:</label>
+					<input type="text" name="startTime" id="event-startTime-input"/>
+
+					<label for="event-endTime-input">End:</label>
+					<input type="text" name="endTime" id="event-endTime-input"/>
+					<br/>
+
+					<label for="event-description-input">Event Description:</label>
+					<textarea name="description" id="event-description-input"></textarea>
+
+				</div>
+				<a href="#groupDetails" data-role="button" onclick="eventCreate()" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" data-theme="b"> Create! </a>
+			</div>
+		</div>
+
+		<div data-role="page" id="eventDetails" data-theme='e'>
+			<div data-role='header' data-position='fixed'>
+				<h1>View Event</h1>
+				<a href="#" data-icon='back' data-rel="back" data-transition="slide" data-iconpos="notext" class="ui-btn-left"></a>
+			</div>
+			<div id="eventDetailsContent" data-role="content" class="ui-content" role="main">
+				<label for="event-title">Event Title:</label>
+				<h3 id="event-title"></h3>
+				
+				<a id="manageEventBtn" href="#manageEvent" onclick="readAllGTplaces()" data-role="button" data-rel="dialog" data-mini="true" data-inline="true" class="ui-btn-right">Manage Event</a>
+			
+				<br />
+				<br />
+				
+				<label for="event-description">Event Description:</label>
+				<h3 id="event-description"></h3>
+				
+				<label for="event-start-time">Start Time:</label>
+				<h3 id="event-start-time"></h3>
+				
+				<label for="event-end-time">End Time:</label>
+				<h3 id="event-end-time"></h3>
+				
+				<label for="event-location">Location:</label>
+				<h3 id="event-location"></h3>
+				
+				<label for="event-location-room">Room No:</label>
+				<h3 id="event-location-room"></h3>
+				
+				<label for="event-host-group">Host Group:</label>
+				<h3 id="event-host-group"> </h3> 
+				<a id="toEventPage" data-role="button" data-mini="true" data-inline="true" class="ui-btn-right">Group Page</a>
+				
+				<br />				
+								
+				<label for="event-group-email">Group Email:</label>
+				<a id="event-group-email"></a>
+				
+			</div>
+		</div>
+
+		<div data-role="page" id="manageEvent" data-theme='e'>
+			<div data-role='header' data-position='fixed'>
+				<h1>Manage Event</h1>
+			</div>
+			<div id="edit_event_form" data-role="content" class="ui-content" role="main">
+				<div data-role="fieldcontain">
+					<label for="event-name-input-edit">Event Name:</label>
+					<input type="text" name="title" id="event-name-input-edit"/>
+					<br/>
+
+					<label for="event-location-input-edit">Location:</label>
+					<input type="text" name="event-location-input-edit" id="event-location-input-edit"/>
+					<ul id="suggestions-edit" data-role="listview" data-inset="true"></ul>
+					
+					<script id="eventLocationOptionItem-edit" type="text/x-jquery-tmpl">
+						<option id="${b_id}" value="${name}" >${name}</option>
+					</script>
+
+					<label for="room-description-input-edit">Room:</label>
+					<input type="text" name="room-description-input" id="room-description-input-edit">
+					</textarea>
+
+					<label for="event-startTime-input-edit">Start:</label>
+					<input type="text" name="startTime" id="event-startTime-input-edit"/>
+
+					<label for="event-endTime-input-edit">End:</label>
+					<input type="text" name="endTime" id="event-endTime-input-edit"/>
+					<br/>
+
+					<label for="event-description-input-edit">Event Description:</label>
+					<textarea name="description" id="event-description-input-edit"></textarea>
+
+				</div>
+				<a href="#eventDetails" data-role="button" onclick="updateEvent();" data-corners="true" data-shadow="true" data-inline="true" data-iconshadow="true" data-wrapperels="span" data-theme="b"> Update! </a>
+				<a href="#home" data-role="button" onclick="deleteEvent();" data-corners="true" data-shadow="true" data-inline="true" data-iconshadow="true" data-wrapperels="span" data-theme="b"> Delete! </a>
+			</div>
+		</div>
+
+	</body>
+</html>
